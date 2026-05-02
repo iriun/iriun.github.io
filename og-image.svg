@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Iriun Webcam for Windows">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FF6A00"/>
+      <stop offset="100%" stop-color="#D95700"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.18)"/>
+      <stop offset="60%" stop-color="rgba(255,255,255,0)"/>
+    </linearGradient>
+    <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="20" result="blur"/>
+      <feOffset in="blur" dx="0" dy="10" result="offset"/>
+      <feMerge>
+        <feMergeNode in="offset"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <!-- Subtle diagonal shine -->
+  <rect x="0" y="0" width="1200" height="630" fill="url(#shine)" transform="skewX(-20) translate(-120,0)" opacity="0.5"/>
+
+  <!-- Center content group -->
+  <g transform="translate(100,100)">
+    <!-- Device illustration card -->
+    <g filter="url(#softShadow)">
+      <rect x="0" y="70" rx="28" ry="28" width="460" height="280" fill="#FFFFFF" opacity="0.95"/>
+      <!-- Camera body details -->
+      <rect x="40" y="110" rx="14" ry="14" width="110" height="40" fill="#F2F4F7"/>
+      <circle cx="230" cy="210" r="70" fill="none" stroke="#FF6A00" stroke-width="14"/>
+      <circle cx="230" cy="210" r="34" fill="#D95700"/>
+      <circle cx="380" cy="130" r="10" fill="#FF6A00"/>
+    </g>
+
+    <!-- Phone silhouette -->
+    <g filter="url(#softShadow)">
+      <rect x="500" y="40" width="150" height="320" rx="28" ry="28" fill="#FFFFFF" opacity="0.95"/>
+      <rect x="520" y="80" width="110" height="220" rx="14" ry="14" fill="#F2F4F7"/>
+      <circle cx="575" cy="60" r="6" fill="#D1D5DB"/>
+      <!-- Wi‑Fi waves -->
+      <path d="M520 330q55 -30 110 0" fill="none" stroke="#FF6A00" stroke-width="6" stroke-linecap="round"/>
+      <path d="M532 315q43 -24 86 0" fill="none" stroke="#FF6A00" stroke-width="6" stroke-linecap="round" opacity="0.7"/>
+    </g>
+
+    <!-- Headline & subheadline -->
+    <g transform="translate(690,110)">
+      <text x="0" y="0" font-family="Inter, Segoe UI, Arial, sans-serif" font-weight="800" font-size="54" fill="#FFFFFF">Iriun Webcam</text>
+      <text x="0" y="56" font-family="Inter, Segoe UI, Arial, sans-serif" font-weight="700" font-size="40" fill="#FFFFFF">for Windows</text>
+      <text x="0" y="116" font-family="Inter, Segoe UI, Arial, sans-serif" font-weight="500" font-size="26" fill="#FFF" opacity="0.9">Use your phone as a high‑quality webcam</text>
+      <text x="0" y="154" font-family="Inter, Segoe UI, Arial, sans-serif" font-weight="500" font-size="22" fill="#FFF" opacity="0.85">USB & Wi‑Fi • Zoom • Teams • OBS</text>
+    </g>
+  </g>
+
+  <!-- Footer note -->
+  <text x="100" y="570" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" fill="#FFFFFF" opacity="0.9">Version 2.9.5 • Windows 11 / 10 • Official installer: IriunWebcam-2.9.5.exe</text>
+</svg>

@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>USB vs Wi‑Fi: Best Quality & Latency Settings in Iriun</title>
+  <meta name="description" content="Choose the best mode for Iriun Webcam on Windows 11/10. USB for the lowest latency, Wi‑Fi for convenience. 2.4GHz vs 5GHz tips, cable advice, power & privacy, and quick download.">
+  <link rel="canonical" href="https://iriun.github.io/usb-vs-wifi.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="USB vs Wi‑Fi: Best Quality & Latency Settings in Iriun">
+  <meta property="og:description" content="Optimize Iriun Webcam for Windows: USB for stable low latency, Wi‑Fi for flexibility. Network, cable and power tips with troubleshooting.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://iriun.github.io/usb-vs-wifi.html">
+  <meta property="og:image" content="/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <meta name="theme-color" content="#FF6A00">
+  <meta name="robots" content="index,follow">
+
+  <!-- Single embedded stylesheet (no frameworks) -->
+  <style>
+    :root{
+      --brand:#FF6A00; /* primary brand orange */
+      --brand-dark:#D95700;
+      --bg:#F6F7F9;
+      --surface:#FFFFFF;
+      --muted:#6B7280;
+      --text:#0F1724;
+      --focus:#0EA5E9;
+      --max-width:1100px;
+      --radius:10px;
+      --shadow:0 6px 18px rgba(16,24,40,0.08);
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      color-scheme: light;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.45}
+    a{color:var(--brand);text-decoration:none}
+    a:focus{outline:3px dashed var(--focus);outline-offset:3px}
+    .container{max-width:var(--max-width);margin:0 auto;padding:24px}
+
+    header{background:linear-gradient(90deg,var(--surface),#fff);position:sticky;top:0;z-index:40;border-bottom:1px solid #E8EAEE}
+    .nav{display:flex;align-items:center;gap:16px;padding:14px 24px}
+    .logo{display:flex;align-items:center;gap:12px}
+    .logo svg{width:38px;height:38px}
+    nav ul{display:flex;gap:12px;list-style:none;margin:0;padding:0}
+    nav a{padding:8px 10px;border-radius:8px}
+    nav a:hover{background:rgba(255,106,0,0.08)}
+
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:start;padding:34px 0}
+    h1{font-size:26px;margin:0 0 10px}
+    p.lead{margin:0 0 16px;color:#374151}
+
+    .card{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px}
+    .cta{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;border:0;background:var(--brand);color:#fff;font-weight:600;cursor:pointer}
+    .btn.secondary{background:transparent;color:var(--brand);border:1px solid rgba(16,24,40,0.06)}
+    .btn:focus{outline:3px dashed var(--focus);outline-offset:3px}
+
+    .grid{display:grid;grid-template-columns:2fr 1fr;gap:16px}
+    .muted{color:var(--muted);font-size:14px}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .tip{background:linear-gradient(180deg,#fff,#FBFBFD);padding:14px;border-radius:10px;border:1px solid #EFF2F5}
+    .callout{border-left:4px solid var(--brand); background:#FFF7F2; padding:12px; border-radius:8px}
+
+    footer{margin-top:36px;padding:24px 0;border-top:1px solid #E8EAEE;color:var(--muted)}
+    .footer-grid{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+
+    /* cookie banner */
+    .cookie{position:fixed;left:16px;right:16px;bottom:16px;background:var(--surface);border-radius:12px;padding:16px;box-shadow:0 10px 30px rgba(2,6,23,0.12);display:flex;gap:12px;align-items:center;z-index:60}
+    .cookie p{margin:0;color:#111827}
+    .cookie .actions{margin-left:auto;display:flex;gap:8px}
+
+    @media (max-width:1000px){.grid{grid-template-columns:1fr}.split{grid-template-columns:1fr}}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  </style>
+
+  <!-- Inline SVG sprite -->
+  <svg style="display:none" aria-hidden="true">
+    <symbol id="icon-camera" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 8a4 4 0 100 8 4 4 0 000-8zm8-2h-2.2l-1.6-2H7.8L6.2 6H4a2 2 0 00-2 2v8a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2z"/>
+    </symbol>
+    <symbol id="icon-download" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 3v10m0 0l4-4m-4 4l-4-4M4 21h16" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </symbol>
+    <symbol id="icon-usb" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2v7m0 0L9 9m3 0l3-1m-3 7v4"/></symbol>
+    <symbol id="icon-wifi" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8.5a16 16 0 0120 0M5 11.5a10 10 0 0114 0M8 14.5a4 4 0 016 0"/></symbol>
+    <symbol id="icon-help" viewBox="0 0 24 24"><path fill="currentColor" d="M12 18h.01M9.09 9a3 3 0 115.82 1c0 2-3 2.5-3 2.5" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24"><path fill="currentColor" d="M5 13l4 4L19 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+  </svg>
+
+  <!-- Minimal gtag wrapper: queue events before consent -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} // don't call config until consent
+  </script>
+
+  <!-- JSON-LD: SoftwareApplication, WebPage, Breadcrumbs, HowTo (USB & Wi‑Fi), FAQ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://iriun.github.io/#website",
+        "url": "https://iriun.github.io/",
+        "name": "Iriun Webcam for Windows — Independent Resource",
+        "publisher": {"@type":"Organization","name":"Iriun (Independent resource)"}
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://iriun.github.io/usb-vs-wifi.html#webpage",
+        "url": "https://iriun.github.io/usb-vs-wifi.html",
+        "name": "USB vs Wi‑Fi: Best Quality & Latency Settings in Iriun",
+        "isPartOf": {"@id":"https://iriun.github.io/#website"},
+        "datePublished": "2024-01-01",
+        "dateModified": "2026-05-02",
+        "breadcrumb": {"@id":"https://iriun.github.io/usb-vs-wifi.html#breadcrumblist"}
+      },
+      {
+        "@type":"BreadcrumbList",
+        "@id":"https://iriun.github.io/usb-vs-wifi.html#breadcrumblist",
+        "itemListElement":[
+          {"@type":"ListItem","position":1,"name":"Home","item":"https://iriun.github.io/"},
+          {"@type":"ListItem","position":2,"name":"USB vs Wi‑Fi","item":"https://iriun.github.io/usb-vs-wifi.html"}
+        ]
+      },
+      {
+        "@type":"SoftwareApplication",
+        "@id":"https://iriun.github.io/#software",
+        "name":"Iriun Webcam",
+        "operatingSystem":"Windows 11, Windows 10 (64-bit)",
+        "applicationCategory":"MultimediaApplication",
+        "softwareVersion":"2.9.5",
+        "url":"https://iriun.github.io/usb-vs-wifi.html",
+        "downloadUrl":"https://iriun.com/IriunWebcam-2.9.5.exe",
+        "offers": {"@type":"Offer","price":"0.00","priceCurrency":"USD"}
+      },
+      {
+        "@type":"HowTo",
+        "name":"Connect Iriun via USB (lowest latency)",
+        "step": [
+          {"@type":"HowToStep","name":"Install Iriun on PC and phone","text":"Install on Windows 11/10 and your Android/iPhone. Open the phone app first."},
+          {"@type":"HowToStep","name":"Use a data USB cable","text":"Connect the phone to the PC with a quality data‑capable cable. Avoid charge‑only cables."},
+          {"@type":"HowToStep","name":"Trust/allow on the phone","text":"If prompted, allow file transfer/trust this computer."},
+          {"@type":"HowToStep","name":"Open Iriun on Windows","text":"Start the Iriun PC app and verify the camera is detected in your target app."}
+        ]
+      },
+      {
+        "@type":"HowTo",
+        "name":"Connect Iriun via Wi‑Fi (5GHz recommended)",
+        "step": [
+          {"@type":"HowToStep","name":"Same network","text":"Connect phone and PC to the same router (prefer 5GHz)."},
+          {"@type":"HowToStep","name":"Strong signal","text":"Stay close to the router; avoid congested channels and heavy downloads."},
+          {"@type":"HowToStep","name":"Open apps in order","text":"Open Iriun on phone first, then on Windows, then your video app."}
+        ]
+      },
+      {
+        "@type":"FAQPage",
+        "mainEntity":[
+          {"@type":"Question","name":"Which is better for Iriun — USB or Wi‑Fi?","acceptedAnswer":{"@type":"Answer","text":"USB provides the lowest latency and most stable image, ideal for streaming and long calls. Wi‑Fi is more convenient and works best on a strong 5GHz network."}},
+          {"@type":"Question","name":"2.4GHz vs 5GHz Wi‑Fi — what should I choose?","acceptedAnswer":{"@type":"Answer","text":"Choose 5GHz when possible for lower interference and higher throughput. 2.4GHz reaches further but is more congested and adds latency."}},
+          {"@type":"Question","name":"Do I need special drivers for USB?","acceptedAnswer":{"@type":"Answer","text":"Windows installs the needed drivers automatically with Iriun. Use a data‑capable cable and try a different USB port if detection fails."}},
+          {"@type":"Question","name":"How do I fix lag or black screen on Wi‑Fi?","acceptedAnswer":{"@type":"Answer","text":"Move closer to the router, switch to 5GHz, reduce resolution in the video app, and close heavy network apps. If issues persist, use USB."}}
+        ]
+      }
+    ]
+  }
+  </script>
+
+</head>
+<body>
+  <a class="sr-only" href="#main">Skip to main content</a>
+  <header>
+    <div class="container nav">
+      <div class="logo">
+        <a href="index.html" aria-label="Home" style="display:flex;align-items:center;gap:12px">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-camera"/></svg>
+          <div>
+            <strong style="display:block">Iriun Webcam</strong>
+            <small class="muted">Use your phone as a webcam — Independent resource</small>
+          </div>
+        </a>
+      </div>
+      <nav style="margin-left:auto">
+        <ul>
+          <li><a href="download-install.html">Download</a></li>
+          <li><a href="video-calls-setup.html">Video calls</a></li>
+          <li><a href="obs-setup.html">OBS</a></li>
+          <li><a aria-current="page" href="usb-vs-wifi.html">USB vs Wi‑Fi</a></li>
+          <li><a href="troubleshooting.html">Troubleshooting</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <section class="hero">
+      <div>
+        <h1>USB vs Wi‑Fi: Best Quality & Latency Settings in Iriun</h1>
+        <p class="lead">Pick the right connection for your needs. Use USB for the most stable and lowest‑latency video. Use Wi‑Fi for quick, cable‑free calls on a strong 5GHz network.</p>
+
+        <div class="card">
+          <div class="cta">
+            <button class="btn" id="downloadBtn" data-filename="IriunWebcam-2.9.5.exe" onclick="downloadInstaller(event)">
+              <svg width="18" height="18" aria-hidden><use href="#icon-download"/></svg>
+              Download for Windows
+            </button>
+            <a class="btn secondary" href="obs-setup.html">Streaming (OBS) tips</a>
+            <a class="btn secondary" href="troubleshooting.html">Fix connectivity</a>
+          </div>
+          <div style="margin-top:14px;font-size:14px;color:var(--muted)">
+            <strong>Version:</strong> 2.9.5 • <strong>OS:</strong> Windows 11 / 10 • <strong>File:</strong> <code>IriunWebcam-2.9.5.exe</code>
+          </div>
+        </div>
+
+        <div style="margin-top:16px" class="callout">
+          <strong>Rule of thumb:</strong> If you’re streaming or presenting, choose USB. For casual calls near your router, Wi‑Fi on 5GHz is usually fine.
+        </div>
+      </div>
+
+      <aside>
+        <div class="card">
+          <h3 style="margin:0 0 8px">At a glance</h3>
+          <ul class="muted" style="margin:0;padding-left:18px">
+            <li>USB → lowest latency, most stable</li>
+            <li>Wi‑Fi → more flexible, requires strong signal</li>
+            <li>5GHz > 2.4GHz for quality and stability</li>
+            <li>Keep your phone powered; disable battery savers</li>
+          </ul>
+          <div style="margin-top:12px">
+            <small class="muted">Last updated:</small>
+            <div id="lastModified" style="font-weight:600;margin-top:4px">—</div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="grid">
+      <div>
+        <div class="card">
+          <h2 style="margin-top:0">When to use USB vs Wi‑Fi</h2>
+          <div class="split">
+            <div class="tip">
+              <strong>Choose USB if you need…</strong>
+              <ul class="muted" style="margin:6px 0 0;padding-left:18px">
+                <li>Lowest latency for streaming or gaming overlays</li>
+                <li>Stable image for long meetings and recordings</li>
+                <li>Lower risk of interference and dropped frames</li>
+              </ul>
+            </div>
+            <div class="tip">
+              <strong>Choose Wi‑Fi if you want…</strong>
+              <ul class="muted" style="margin:6px 0 0;padding-left:18px">
+                <li>Simple, cable‑free setup for quick calls</li>
+                <li>Freedom to position your phone as a camera</li>
+                <li>Good router proximity and a clean 5GHz channel</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div style="height:14px"></div>
+
+        <div class="card">
+          <h2 style="margin-top:0">Optimize USB connection</h2>
+          <ul class="muted" style="margin:0;padding-left:18px">
+            <li>Use a <strong>data‑capable</strong> USB cable; avoid charge‑only cables.</li>
+            <li>Prefer USB 3.x ports on your PC; try another port if detection fails.</li>
+            <li>Unlock your phone and trust the PC if prompted (especially on iOS).</li>
+            <li>Keep the phone powered; disable aggressive battery savers.</li>
+            <li>In apps, start with 1280×720 @30fps; increase to 1080p if stable.</li>
+          </ul>
+        </div>
+
+        <div style="height:14px"></div>
+
+        <div class="card">
+          <h2 style="margin-top:0">Optimize Wi‑Fi connection</h2>
+          <ul class="muted" style="margin:0;padding-left:18px">
+            <li>Use <strong>5GHz</strong> near the router; avoid walls and interference.</li>
+            <li>Close heavy streaming/downloads on your network.</li>
+            <li>Reduce resolution to 720p if you see stutters or artifacts.</li>
+            <li>Position the phone with a clear line of sight to the router.</li>
+            <li>Restart your video app after starting Iriun on phone and PC.</li>
+          </ul>
+        </div>
+
+        <div style="height:14px"></div>
+
+        <div class="card">
+          <h2 style="margin-top:0">Privacy & power tips</h2>
+          <ul class="muted" style="margin:0;padding-left:18px">
+            <li>On Wi‑Fi, Iriun streams locally; use trusted networks.</li>
+            <li>For maximum privacy and lowest latency, use USB.</li>
+            <li>Keep your phone charged or connected to power for long sessions.</li>
+          </ul>
+        </div>
+
+        <div style="height:14px"></div>
+
+        <div class="card">
+          <h2 style="margin-top:0">Connectivity troubleshooting</h2>
+          <ul class="muted" style="margin:0;padding-left:18px">
+            <li><strong>Not detected:</strong> Start Iriun on phone then PC; restart your video app. Try a different USB port or cable.</li>
+            <li><strong>Black screen on Wi‑Fi:</strong> Move closer to the router, switch to 5GHz, or use USB.</li>
+            <li><strong>Permissions:</strong> Windows → Settings → Privacy & security → Camera → Allow apps to access.</li>
+            <li><strong>Still stuck?</strong> See <a href="troubleshooting.html">Troubleshooting</a> or perform a clean reinstall.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <div class="card">
+          <h3 style="margin-top:0">Quick download</h3>
+          <p class="muted" style="margin:0">Official Windows installer:</p>
+          <p style="margin:6px 0 10px"><code>IriunWebcam-2.9.5.exe</code></p>
+          <button class="btn" data-filename="IriunWebcam-2.9.5.exe" onclick="downloadInstaller(event)">
+            <svg width="18" height="18" aria-hidden><use href="#icon-download"/></svg>
+            Download now
+          </button>
+        </div>
+
+        <div style="height:14px"></div>
+
+        <div class="card">
+          <h3 style="margin-top:0">More guides</h3>
+          <ul class="muted" style="margin:0;padding-left:18px">
+            <li><a href="download-install.html">Download & Install</a></li>
+            <li><a href="video-calls-setup.html">Zoom / Teams / Meet</a></li>
+            <li><a href="obs-setup.html">OBS setup</a></li>
+            <li><a href="troubleshooting.html">Troubleshooting</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container footer-grid">
+        <div>
+          <small>&copy; 2026 Iriun Webcam — Independent resource • <a href="privacy.html">Privacy</a></small>
+          <div style="margin-top:6px;color:var(--muted)">Not affiliated with or endorsed by Iriun.</div>
+        </div>
+        <div style="text-align:right;color:var(--muted)">
+          <small>Installer file: <code> IriunWebcam-2.9.5.exe</code></small>
+          <br>
+          <small id="fileUrl">https://iriun.com/IriunWebcam-2.9.5.exe</small>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Minimal gtag wrapper: queue events before consent -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} // config only after consent
+  </script>
+
+  <!-- Cookie banner -->
+  <div id="cookieBanner" class="cookie" role="dialog" aria-live="polite">
+    <div>
+      <strong>We use cookies</strong>
+      <p class="muted">We use analytics to improve the site. You can Accept or Decline. No analytics are loaded until you accept.</p>
+    </div>
+    <div class="actions">
+      <button class="btn" id="acceptCookies">Accept</button>
+      <button class="btn secondary" id="declineCookies">Decline</button>
+      <button class="btn secondary" id="closeCookie">Close</button>
+    </div>
+  </div>
+
+  <!-- Scripts: cookie handling, download tracking, GA loader -->
+  <script>
+    (function(){
+      const GA_ID = 'G-KTRNMRWX0D';
+      const installerUrl = 'https://iriun.com/IriunWebcam-2.9.5.exe';
+      const installerName = 'IriunWebcam-2.9.5.exe';
+
+      // Last modified display
+      const lastEl = document.getElementById('lastModified');
+      const lm = document.lastModified || '';
+      if(lastEl) lastEl.textContent = lm ? lm : '2026-05-02';
+
+      // Cookie banner logic
+      const cookieBanner = document.getElementById('cookieBanner');
+      const acceptBtn = document.getElementById('acceptCookies');
+      const declineBtn = document.getElementById('declineCookies');
+      const closeBtn = document.getElementById('closeCookie');
+
+      function showBannerIfNeeded(){
+        const choice = localStorage.getItem('iriun_analytics');
+        if(choice === null){ cookieBanner.style.display = 'flex'; }
+        else{ cookieBanner.style.display = 'none'; if(choice === 'granted') loadGAScript(); }
+      }
+
+      function loadGAScript(){
+        if(window.__ga_loaded) return;
+        window.__ga_loaded = true;
+        const s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+        document.head.appendChild(s);
+        s.onload = function(){
+          gtag('js', new Date());
+          gtag('config', GA_ID, { 'anonymize_ip': true });
+        };
+      }
+
+      acceptBtn.addEventListener('click', function(){
+        localStorage.setItem('iriun_analytics','granted');
+        cookieBanner.style.display = 'none';
+        loadGAScript();
+      });
+      declineBtn.addEventListener('click', function(){
+        localStorage.setItem('iriun_analytics','denied');
+        cookieBanner.style.display = 'none';
+      });
+      closeBtn.addEventListener('click', function(){
+        cookieBanner.style.display = 'none';
+      });
+
+      // Download button handler with gtag event
+      window.downloadInstaller = function(e){
+        e && e.preventDefault && e.preventDefault();
+        try{
+          gtag('event','file_download', {
+            'event_category':'downloads',
+            'event_label': installerName,
+            'file_url': installerUrl
+          });
+        }catch(err){}
+        setTimeout(function(){ window.location.href = installerUrl; }, 200);
+      };
+
+      // Delegated handler for elements with data-filename
+      document.addEventListener('click', function(ev){
+        const t = ev.target.closest && ev.target.closest('[data-filename]');
+        if(!t) return;
+        if(t.id !== 'downloadBtn'){
+          const name = t.getAttribute('data-filename') || installerName;
+          try{ gtag('event','file_download',{event_category:'downloads',event_label:name,file_url:installerUrl}); }catch(e){}
+        }
+      });
+
+      // init
+      showBannerIfNeeded();
+
+    })();
+  </script>
+</body>
+</html>

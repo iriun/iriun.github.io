@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# GitHub Pages site for Iriun Webcam guides
+Sitemap: https://iriun.github.io/sitemap.xml
+Host: iriun.github.io
