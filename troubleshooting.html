@@ -1,434 +1,56 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Troubleshooting Iriun on Windows: Not Detected, Black Screen, Driver Issues</title>
-  <meta name="description" content="Fix Iriun Webcam issues on Windows 11/10: camera not detected in Zoom/Teams/OBS, black screen, USB problems, firewall and permissions. Safe download of IriunWebcam-2.9.5.exe.">
-  <link rel="canonical" href="https://iriun.github.io/troubleshooting.html">
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Iriun Webcam Troubleshooting on Windows — Fix All Common Errors</title>
+<meta name="description" content="Fix Iriun Webcam errors on Windows: not connecting, black screen, camera not detected in Zoom and Teams, firewall block, driver issues and audio errors.">
+<link rel="canonical" href="https://iriun.github.io/troubleshooting.html">
+<meta name="last-modified" content="2026-06-08">
+<meta property="og:title" content="Iriun Webcam Troubleshooting on Windows — Fix All Common Errors">
+<meta property="og:description" content="Fix Iriun Webcam errors on Windows: not connecting, black screen, camera not detected in Zoom and Teams, firewall block, driver issues and audio errors.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://iriun.github.io/troubleshooting.html">
+<meta property="og:image" content="https://iriun.github.io/og-image.svg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg">
+<link rel="stylesheet" href="/style.css">
+</head><body>
+<nav class="site-nav"><div class="wrap"><div class="nav-inner"><a href="/index.html" class="nav-logo"><div class="nav-logo-mark">Ir</div><span class="nav-logo-name">Iriun Webcam</span><span class="nav-logo-sub">for Windows</span></a><div class="nav-links"><a href="/index.html" id="nl-home">Download</a><a href="/download-install.html" id="nl-install">Install</a><a href="/usb-vs-wifi.html" id="nl-usb">USB vs Wi-Fi</a><a href="/troubleshooting.html" id="nl-fix">Fix errors</a><a href="/faq.html" id="nl-faq">FAQ</a></div><a href="/index.html" class="nav-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</a></div></div></nav>
+<div class="page-hero"><div class="wrap">
+<nav class="breadcrumb"><a href="/index.html">home</a> <span>/</span> <span>troubleshooting</span></nav>
+<span class="page-tag page-tag-red">Fix errors</span>
+<h1>Iriun Webcam troubleshooting on Windows &mdash; <span>fix all common errors</span></h1>
+<p class="page-lead">Fix Iriun Webcam issues on Windows: phone not connecting, camera not showing in Zoom and Teams, black screen, firewall block and virtual camera driver problems.</p>
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Troubleshooting Iriun on Windows: Not Detected, Black Screen, Driver Issues">
-  <meta property="og:description" content="Step-by-step fixes for Iriun Webcam on Windows 11/10: detection, black screen, driver conflicts, USB and Wi‑Fi tips.">
-  <meta property="og:type" content="article">
-  <meta property="og:url" content="https://iriun.github.io/troubleshooting.html">
-  <meta property="og:image" content="/og-image.png">
-  <meta name="twitter:card" content="summary_large_image">
-
-  <meta name="theme-color" content="#FF6A00">
-  <meta name="robots" content="index,follow">
-
-  <!-- Single embedded stylesheet (no frameworks) -->
-  <style>
-    :root{
-      --brand:#FF6A00; /* primary brand orange */
-      --brand-dark:#D95700;
-      --bg:#F6F7F9;
-      --surface:#FFFFFF;
-      --muted:#6B7280;
-      --text:#0F1724;
-      --focus:#0EA5E9;
-      --max-width:1100px;
-      --radius:10px;
-      --shadow: 0 6px 18px rgba(16,24,40,0.08);
-      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-      color-scheme: light;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.45}
-    a{color:var(--brand);text-decoration:none}
-    a:focus{outline:3px dashed var(--focus);outline-offset:3px}
-    .container{max-width:var(--max-width);margin:0 auto;padding:24px}
-
-    header{background:linear-gradient(90deg,var(--surface),#fff);position:sticky;top:0;z-index:40;border-bottom:1px solid #E8EAEE}
-    .nav{display:flex;align-items:center;gap:16px;padding:14px 24px}
-    .logo{display:flex;align-items:center;gap:12px}
-    .logo svg{width:38px;height:38px}
-    nav ul{display:flex;gap:12px;list-style:none;margin:0;padding:0}
-    nav a{padding:8px 10px;border-radius:8px}
-    nav a:hover{background:rgba(255,106,0,0.08)}
-
-    .hero{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:start;padding:34px 0}
-    h1{font-size:26px;margin:0 0 10px}
-    p.lead{margin:0 0 16px;color:#374151}
-
-    .card{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px}
-    .cta{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;border:0;background:var(--brand);color:#fff;font-weight:600;cursor:pointer}
-    .btn.secondary{background:transparent;color:var(--brand);border:1px solid rgba(16,24,40,0.06)}
-    .btn:focus{outline:3px dashed var(--focus);outline-offset:3px}
-
-    .grid{display:grid;grid-template-columns:2fr 1fr;gap:16px}
-    .muted{color:var(--muted);font-size:14px}
-    .step{background:linear-gradient(180deg,#fff,#FBFBFD);padding:14px;border-radius:10px;border:1px solid #EFF2F5;margin-bottom:10px}
-    .callout{border-left:4px solid var(--brand); background:#FFF7F2; padding:12px; border-radius:8px}
-
-    footer{margin-top:36px;padding:24px 0;border-top:1px solid #E8EAEE;color:var(--muted)}
-    .footer-grid{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
-
-    /* cookie banner */
-    .cookie{position:fixed;left:16px;right:16px;bottom:16px;background:var(--surface);border-radius:12px;padding:16px;box-shadow:0 10px 30px rgba(2,6,23,0.12);display:flex;gap:12px;align-items:center;z-index:60}
-    .cookie p{margin:0;color:#111827}
-    .cookie .actions{margin-left:auto;display:flex;gap:8px}
-
-    @media (max-width:1000px){.grid{grid-template-columns:1fr}}
-    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-  </style>
-
-  <!-- Inline SVG sprite -->
-  <svg style="display:none" aria-hidden="true">
-    <symbol id="icon-camera" viewBox="0 0 24 24">
-      <path fill="currentColor" d="M12 8a4 4 0 100 8 4 4 0 000-8zm8-2h-2.2l-1.6-2H7.8L6.2 6H4a2 2 0 00-2 2v8a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2z"/>
-    </symbol>
-    <symbol id="icon-download" viewBox="0 0 24 24">
-      <path fill="currentColor" d="M12 3v10m0 0l4-4m-4 4l-4-4M4 21h16" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-    </symbol>
-    <symbol id="icon-help" viewBox="0 0 24 24"><path fill="currentColor" d="M12 18h.01M9.09 9a3 3 0 115.82 1c0 2-3 2.5-3 2.5" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
-    <symbol id="icon-check" viewBox="0 0 24 24"><path fill="currentColor" d="M5 13l4 4L19 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
-    <symbol id="icon-warning" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l10 18H2L12 2zm0 13a1 1 0 110 2 1 1 0 010-2zm-1-6h2v4h-2V9z"/></symbol>
-  </svg>
-
-  <!-- Minimal gtag wrapper: queue events before consent -->
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);} // config only after consent
-  </script>
-
-  <!-- JSON-LD: SoftwareApplication, WebPage, Breadcrumbs, HowTo (not detected), FAQ -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "@id": "https://iriun.github.io/#website",
-        "url": "https://iriun.github.io/",
-        "name": "Iriun Webcam for Windows — Independent Resource",
-        "publisher": {"@type":"Organization","name":"Iriun (Independent resource)"}
-      },
-      {
-        "@type": "WebPage",
-        "@id": "https://iriun.github.io/troubleshooting.html#webpage",
-        "url": "https://iriun.github.io/troubleshooting.html",
-        "name": "Troubleshooting Iriun on Windows: Not Detected, Black Screen, Driver Issues",
-        "isPartOf": {"@id":"https://iriun.github.io/#website"},
-        "datePublished": "2024-01-01",
-        "dateModified": "2026-05-02",
-        "breadcrumb": {"@id":"https://iriun.github.io/troubleshooting.html#breadcrumblist"}
-      },
-      {
-        "@type":"BreadcrumbList",
-        "@id":"https://iriun.github.io/troubleshooting.html#breadcrumblist",
-        "itemListElement":[
-          {"@type":"ListItem","position":1,"name":"Home","item":"https://iriun.github.io/"},
-          {"@type":"ListItem","position":2","name":"Troubleshooting","item":"https://iriun.github.io/troubleshooting.html"}
-        ]
-      },
-      {
-        "@type":"SoftwareApplication",
-        "@id":"https://iriun.github.io/#software",
-        "name":"Iriun Webcam",
-        "operatingSystem":"Windows 11, Windows 10 (64-bit)",
-        "applicationCategory":"MultimediaApplication",
-        "softwareVersion":"2.9.5",
-        "url":"https://iriun.github.io/troubleshooting.html",
-        "downloadUrl":"https://iriun.com/IriunWebcam-2.9.5.exe",
-        "offers": {"@type":"Offer","price":"0.00","priceCurrency":"USD"}
-      },
-      {
-        "@type":"HowTo",
-        "name":"Fix \"Iriun Webcam not detected\" on Windows",
-        "totalTime":"PT3M",
-        "step": [
-          {"@type":"HowToStep","name":"Restart apps in order","text":"Open Iriun on the phone first, then on Windows, then your video app (Zoom/Teams/OBS)."},
-          {"@type":"HowToStep","name":"Allow camera permission","text":"Windows → Settings → Privacy & security → Camera → Allow apps to access your camera."},
-          {"@type":"HowToStep","name":"Try USB","text":"Connect via USB for stability. Use a data‑capable cable and a different USB port if needed."},
-          {"@type":"HowToStep","name":"Reinstall drivers (last resort)","text":"Uninstall Iriun and its virtual camera device, reboot, then reinstall. See the Clean Reinstall guide."}
-        ]
-      },
-      {
-        "@type":"FAQPage",
-        "mainEntity":[
-          {"@type":"Question","name":"Iriun Webcam is not listed in my apps","acceptedAnswer":{"@type":"Answer","text":"Start Iriun on phone and PC first, then restart Zoom/Teams/OBS. Check Windows camera privacy settings, and try USB for stability."}},
-          {"@type":"Question","name":"I get a black screen","acceptedAnswer":{"@type":"Answer","text":"Ensure the phone app is active and the same network is used on Wi‑Fi (prefer 5GHz). Try switching cameras in the phone app or connect via USB."}},
-          {"@type":"Question","name":"USB connection doesn't work","acceptedAnswer":{"@type":"Answer","text":"Use a data‑capable cable, unlock the phone, trust the PC if prompted, and try a different USB port. Reinstall Iriun if the virtual device is missing."}},
-          {"@type":"Question","name":"Do I need to allow firewall access?","acceptedAnswer":{"@type":"Answer","text":"On Wi‑Fi, allow Iriun through Windows Defender Firewall for private networks. For maximum privacy and performance, use USB."}},
-          {"@type":"Question","name":"How do I perform a clean reinstall?","acceptedAnswer":{"@type":"Answer","text":"Uninstall Iriun, remove the virtual camera in Device Manager, reboot, then install again. Follow the Clean Reinstall guide on this site."}}
-        ]
-      }
-    ]
-  }
-  </script>
-
-</head>
-<body>
-  <a class="sr-only" href="#main">Skip to main content</a>
-  <header>
-    <div class="container nav">
-      <div class="logo">
-        <a href="index.html" aria-label="Home" style="display:flex;align-items:center;gap:12px">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-camera"/></svg>
-          <div>
-            <strong style="display:block">Iriun Webcam</strong>
-            <small class="muted">Use your phone as a webcam — Independent resource</small>
-          </div>
-        </a>
-      </div>
-      <nav style="margin-left:auto">
-        <ul>
-          <li><a href="download-install.html">Download</a></li>
-          <li><a href="video-calls-setup.html">Video calls</a></li>
-          <li><a href="obs-setup.html">OBS</a></li>
-          <li><a href="usb-vs-wifi.html">USB vs Wi‑Fi</a></li>
-          <li><a aria-current="page" href="troubleshooting.html">Troubleshooting</a></li>
-          <li><a href="faq.html">FAQ</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main id="main" class="container">
-    <section class="hero">
-      <div>
-        <h1>Troubleshooting Iriun on Windows: Not Detected, Black Screen, Driver Issues</h1>
-        <p class="lead">Follow this checklist to fix detection problems, black screens and driver issues on Windows 11/10. Prefer USB for the most stable connection.</p>
-
-        <div class="card">
-          <div class="cta">
-            <button class="btn" id="downloadBtn" data-filename="IriunWebcam-2.9.5.exe" onclick="downloadInstaller(event)">
-              <svg width="18" height="18" aria-hidden><use href="#icon-download"/></svg>
-              Download for Windows
-            </button>
-            <a class="btn secondary" href="uninstall-reinstall.html">Clean reinstall guide</a>
-            <a class="btn secondary" href="usb-vs-wifi.html">USB vs Wi‑Fi tips</a>
-          </div>
-          <div style="margin-top:14px;font-size:14px;color:var(--muted)">
-            <strong>Version:</strong> 2.9.5 • <strong>OS:</strong> Windows 11 / 10 • <strong>File:</strong> <code>IriunWebcam-2.9.5.exe</code>
-          </div>
-        </div>
-
-        <div style="margin-top:16px" class="callout">
-          <strong>Quick check:</strong> Open Iriun on your phone first, then the Windows app, then your video app. If on Wi‑Fi, ensure both devices are on the same network (prefer 5GHz).
-        </div>
-      </div>
-
-      <aside>
-        <div class="card">
-          <h3 style="margin:0 0 8px">Fast fixes</h3>
-          <ul class="muted" style="margin:0;padding-left:18px">
-            <li>Restart the video app after starting Iriun</li>
-            <li>Check Windows camera privacy settings</li>
-            <li>Try a USB cable and different port</li>
-            <li>Reinstall Iriun if the device is missing</li>
-          </ul>
-          <div style="margin-top:12px">
-            <small class="muted">Last updated:</small>
-            <div id="lastModified" style="font-weight:600;margin-top:4px">—</div>
-          </div>
-        </div>
-      </aside>
-    </section>
-
-    <section class="grid">
-      <div>
-        <div class="card">
-          <h2 style="margin-top:0">1) Checklist: not detected in apps</h2>
-          <div class="step"><strong>Start order:</strong> Phone app → Windows app → Video app (Zoom/Teams/OBS). Fully quit and reopen the video app.</div>
-          <div class="step"><strong>Camera privacy:</strong> Windows → Settings → Privacy & security → Camera → Allow apps to access your camera.</div>
-          <div class="step"><strong>USB for stability:</strong> Use a data‑capable USB cable. Try a different USB port.</div>
-          <div class="step"><strong>Conflict check:</strong> Close other virtual camera tools (e.g., other webcam utilities) and background capture apps.</div>
-          <div class="step"><strong>Reinstall (if needed):</strong> If <em>Iriun Webcam</em> device is missing in apps, see <a href="uninstall-reinstall.html">Clean reinstall</a>.</div>
-        </div>
-
-        <div style="height:14px"></div>
-
-        <div class="card">
-          <h2 style="margin-top:0">2) Black screen or frozen image</h2>
-          <ul class="muted" style="margin:0;padding-left:18px">
-            <li>Confirm the phone app is open and active; switch rear/front camera in the phone app.</li>
-            <li>On Wi‑Fi, connect both devices to the same SSID (prefer 5GHz). Move closer to the router.</li>
-            <li>Close heavy downloads/streams; reduce resolution to 720p in your video app.</li>
-            <li>Switch to USB for best stability.</li>
-          </ul>
-        </div>
-
-        <div style="height:14px"></div>
-
-        <div class="card">
-          <h2 style="margin-top:0">3) USB connection problems</h2>
-          <ul class="muted" style="margin:0;padding-left:18px">
-            <li>Use a proper data cable; avoid charge‑only cables. Try a different port (USB 3.x preferred).</li>
-            <li>Unlock phone; on iOS, tap "Trust this computer"; on Android, ensure data transfer is allowed.</li>
-            <li>Restart the Iriun Windows app after connecting the phone.</li>
-            <li>If still not detected, perform a <a href="uninstall-reinstall.html">clean reinstall</a>.</li>
-          </ul>
-        </div>
-
-        <div style="height:14px"></div>
-
-        <div class="card">
-          <h2 style="margin-top:0">4) Windows permissions & firewall</h2>
-          <ul class="muted" style="margin:0;padding-left:18px">
-            <li>Privacy: Settings → Privacy & security → Camera → Allow apps to access.</li>
-            <li>Firewall (Wi‑Fi only): Allow Iriun through Windows Defender Firewall on private networks.</li>
-            <li>Antivirus: Temporarily allow the installer/app if blocked; re‑enable after setup.</li>
-          </ul>
-        </div>
-
-        <div style="height:14px"></div>
-
-        <div class="card">
-          <h2 style="margin-top:0">5) When to clean reinstall</h2>
-          <p class="muted" style="margin:0 0 8px">If <em>Iriun Webcam</em> never appears as a camera device in any app or you suspect a corrupted install:</p>
-          <ul class="muted" style="margin:0;padding-left:18px">
-            <li>Uninstall Iriun from Windows</li>
-            <li>Remove the virtual camera in Device Manager</li>
-            <li>Reboot your PC</li>
-            <li>Install fresh and verify in Zoom/Teams/OBS</li>
-          </ul>
-          <div class="muted" style="margin-top:8px">Follow the detailed steps in <a href="uninstall-reinstall.html">Uninstall & Clean Reinstall</a>.</div>
-        </div>
-      </div>
-
-      <div>
-        <div class="card">
-          <h3 style="margin-top:0">Quick download</h3>
-          <p class="muted" style="margin:0">Official Windows installer:</p>
-          <p style="margin:6px 0 10px"><code>IriunWebcam-2.9.5.exe</code></p>
-          <button class="btn" data-filename="IriunWebcam-2.9.5.exe" onclick="downloadInstaller(event)">
-            <svg width="18" height="18" aria-hidden><use href="#icon-download"/></svg>
-            Download now
-          </button>
-        </div>
-
-        <div style="height:14px"></div>
-
-        <div class="card">
-          <h3 style="margin-top:0">More guides</h3>
-          <ul class="muted" style="margin:0;padding-left:18px">
-            <li><a href="download-install.html">Download & Install</a></li>
-            <li><a href="video-calls-setup.html">Zoom / Teams / Meet</a></li>
-            <li><a href="obs-setup.html">OBS setup</a></li>
-            <li><a href="usb-vs-wifi.html">USB vs Wi‑Fi</a></li>
-            <li><a href="faq.html">FAQ</a></li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <div class="container footer-grid">
-        <div>
-          <small>&copy; 2026 Iriun Webcam — Independent resource • <a href="privacy.html">Privacy</a></small>
-          <div style="margin-top:6px;color:var(--muted)">Not affiliated with or endorsed by Iriun.</div>
-        </div>
-        <div style="text-align:right;color:var(--muted)">
-          <small>Installer file: <code> IriunWebcam-2.9.5.exe</code></small>
-          <br>
-          <small id="fileUrl">https://iriun.com/IriunWebcam-2.9.5.exe</small>
-        </div>
-      </div>
-    </footer>
-
-  </main>
-
-  <!-- Minimal gtag wrapper: queue events before consent -->
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);} // config only after consent
-  </script>
-
-  <!-- Cookie banner -->
-  <div id="cookieBanner" class="cookie" role="dialog" aria-live="polite">
-    <div>
-      <strong>We use cookies</strong>
-      <p class="muted">We use analytics to improve the site. You can Accept or Decline. No analytics are loaded until you accept.</p>
-    </div>
-    <div class="actions">
-      <button class="btn" id="acceptCookies">Accept</button>
-      <button class="btn secondary" id="declineCookies">Decline</button>
-      <button class="btn secondary" id="closeCookie">Close</button>
-    </div>
-  </div>
-
-  <!-- Scripts: cookie handling, download tracking, GA loader -->
-  <script>
-    (function(){
-      const GA_ID = 'G-KTRNMRWX0D';
-      const installerUrl = 'https://iriun.com/IriunWebcam-2.9.5.exe';
-      const installerName = 'IriunWebcam-2.9.5.exe';
-
-      // Last modified display
-      const lastEl = document.getElementById('lastModified');
-      const lm = document.lastModified || '';
-      if(lastEl) lastEl.textContent = lm ? lm : '2026-05-02';
-
-      // Cookie banner logic
-      const cookieBanner = document.getElementById('cookieBanner');
-      const acceptBtn = document.getElementById('acceptCookies');
-      const declineBtn = document.getElementById('declineCookies');
-      const closeBtn = document.getElementById('closeCookie');
-
-      function showBannerIfNeeded(){
-        const choice = localStorage.getItem('iriun_analytics');
-        if(choice === null){ cookieBanner.style.display = 'flex'; }
-        else{ cookieBanner.style.display = 'none'; if(choice === 'granted') loadGAScript(); }
-      }
-
-      function loadGAScript(){
-        if(window.__ga_loaded) return;
-        window.__ga_loaded = true;
-        const s = document.createElement('script');
-        s.async = true;
-        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
-        document.head.appendChild(s);
-        s.onload = function(){
-          gtag('js', new Date());
-          gtag('config', GA_ID, { 'anonymize_ip': true });
-        };
-      }
-
-      acceptBtn.addEventListener('click', function(){
-        localStorage.setItem('iriun_analytics','granted');
-        cookieBanner.style.display = 'none';
-        loadGAScript();
-      });
-      declineBtn.addEventListener('click', function(){
-        localStorage.setItem('iriun_analytics','denied');
-        cookieBanner.style.display = 'none';
-      });
-      closeBtn.addEventListener('click', function(){
-        cookieBanner.style.display = 'none';
-      });
-
-      // Download button handler with gtag event
-      window.downloadInstaller = function(e){
-        e && e.preventDefault && e.preventDefault();
-        try{
-          gtag('event','file_download', {
-            'event_category':'downloads',
-            'event_label': installerName,
-            'file_url': installerUrl
-          });
-        }catch(err){}
-        setTimeout(function(){ window.location.href = installerUrl; }, 200);
-      };
-
-      // Delegated handler for elements with data-filename
-      document.addEventListener('click', function(ev){
-        const t = ev.target.closest && ev.target.closest('[data-filename]');
-        if(!t) return;
-        if(t.id !== 'downloadBtn'){
-          const name = t.getAttribute('data-filename') || installerName;
-          try{ gtag('event','file_download',{event_category:'downloads',event_label:name,file_url:installerUrl}); }catch(e){}
-        }
-      });
-
-      // init
-      showBannerIfNeeded();
-
-    })();
-  </script>
-</body>
-</html>
+</div></div>
+<div class="wrap"><div class="content-layout">
+<main><div class="callout callout-info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span>Most Iriun issues fall into one of three categories: connection problems (phone and PC not finding each other), camera not appearing in apps, or driver issues on Windows. Start with the fix that matches your symptom.</span></div>
+<div class="section"><span class="section-label">Not connecting</span><h2>Iriun phone not connecting to PC</h2>
+<div class="err-card"><div class="err-title">Phone shows "Looking for computer" and never connects</div><div class="err-cause">PC client not running, or phone and PC on different networks</div><span class="err-fix">Start PC client first, confirm both are on same Wi-Fi</span></div>
+<div class="err-card"><div class="err-title">Connected on Wi-Fi but video is black or frozen</div><div class="err-cause">Firewall blocking UDP traffic between devices</div><span class="err-fix">Add Iriun to Windows Defender Firewall exceptions</span></div>
+<div class="err-card"><div class="err-title">USB mode not working on Android</div><div class="err-cause">USB debugging not enabled or wrong USB mode selected</div><span class="err-fix">Enable USB debugging in Developer Options on Android</span></div>
+<div class="err-card"><div class="err-title">"Please start Iriun Webcam" error on phone</div><div class="err-cause">PC client is not running</div><span class="err-fix">Open Iriun Webcam on Windows PC first, then open phone app</span></div>
+</div>
+<div class="section"><span class="section-label">Camera not detected</span><h2>Iriun Webcam not showing in Zoom / Teams / OBS</h2>
+<div class="err-card"><div class="err-title">Iriun Webcam missing from camera dropdown</div><div class="err-cause">Virtual camera driver not installed or app opened before client</div><span class="err-fix">Restart the app after Iriun client is running; reboot if needed</span></div>
+<div class="err-card"><div class="err-title">Camera appears but shows black screen</div><div class="err-cause">Permission denied or driver conflict</div><span class="err-fix">Check Windows camera privacy settings; allow the app to use camera</span></div>
+<div class="err-card"><div class="err-title">Iriun shows in OBS but not in Zoom/Teams</div><div class="err-cause">Some apps need to be restarted after Iriun connects</div><span class="err-fix">Close and reopen Zoom or Teams while Iriun is running</span></div>
+</div>
+<div class="section"><span class="section-label">Firewall fix</span><h2>Add Iriun to Windows Firewall</h2>
+<div class="term"><div class="term-bar"><div class="term-dot" style="background:#ff5f56"></div><div class="term-dot" style="background:#ffbd2e"></div><div class="term-dot" style="background:#27c93f"></div><span class="term-label">Windows Defender Firewall</span></div><div class="term-body"><div><span class="t-cm"># Open firewall settings:</span></div><div><span class="t-v">Control Panel > Windows Defender Firewall</span></div><div><span class="t-v">> Allow an app or feature through Firewall</span></div><div><span class="t-v">> Change settings > Allow another app</span></div><div><span class="t-v">> Browse to: C:\Program Files\Iriun Webcam\IriunWebcam.exe</span></div><div><span class="t-cm"># Check both Private and Public network boxes</span></div></div></div>
+</div>
+<div class="section"><span class="section-label">Driver reinstall</span><h2>Reinstall the Iriun virtual camera driver</h2><ul class="steps">
+<li class="step"><div class="step-n">1</div><div><h3>Uninstall Iriun completely</h3><p>Settings &rarr; Apps &rarr; Iriun Webcam &rarr; Uninstall. Also remove any Iriun entries from Device Manager under Cameras or Imaging devices.</p></div></li>
+<li class="step"><div class="step-n">2</div><div><h3>Reboot Windows</h3><p>Restart your PC to fully remove the virtual camera driver.</p></div></li>
+<li class="step"><div class="step-n">3</div><div><h3>Reinstall fresh</h3><p>Download and run <code>IriunWebcam-2.9.5.exe</code> again. The driver reinstalls cleanly. See <a href="/uninstall-reinstall.html">clean reinstall guide</a>.</p></div></li>
+</ul></div>
+<div class="section"><span class="section-label">FAQ</span><h2>Troubleshooting questions</h2><div class="faq">
+<div class="faq-item"><details><summary>Iriun worked before but stopped after Windows Update</summary><div class="faq-ans">Windows updates sometimes reset camera privacy permissions. Check: Settings &rarr; Privacy &rarr; Camera &rarr; make sure your apps are allowed to access the camera. Also reboot the Iriun PC client.</div></details></div>
+<div class="faq-item"><details><summary>Initialization failed &mdash; problems with audio driver</summary><div class="faq-ans">This error means Iriun cannot initialise the audio output. Fix: uninstall Iriun completely, reboot, reinstall. If the error persists, check Device Manager for any yellow warning icons under Sound, video and game controllers.</div></details></div>
+</div></div>
+<div class="cta-banner"><div><h2>Specifically not connecting?</h2><p>Detailed connection troubleshooting guide.</p></div><a href="/iriun-webcam-not-connecting.html" class="btn-white"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Not connecting fix</a></div>
+<div style="margin-bottom:24px"><span class="section-label">Related guides</span><div class="rel-grid"><a href="/iriun-webcam-not-connecting.html" class="rel-card"><div class="rel-title">Not connecting &rarr;</div><div class="rel-sub">connection fix</div></a><a href="/iriun-webcam-not-working.html" class="rel-card"><div class="rel-title">Not working &rarr;</div><div class="rel-sub">general fix</div></a><a href="/uninstall-reinstall.html" class="rel-card"><div class="rel-title">Reinstall &rarr;</div><div class="rel-sub">clean reinstall</div></a></div></div></main>
+<aside class="content-sidebar"><div class="sb-ver"><div class="sb-ver-label">PC client</div><div class="sb-ver-val">2.9.5</div><div class="sb-ver-sub">Windows 10 / 11</div></div><div class="sb-card"><div class="sb-card-title">Setup</div><ul class="sb-links"><li><a href="/index.html">Download Iriun Webcam</a></li><li><a href="/download-install.html">Install guide</a></li><li><a href="/usb-vs-wifi.html">USB vs Wi-Fi</a></li><li><a href="/uninstall-reinstall.html">Reinstall</a></li><li><a href="/iriun-webcam-free-vs-paid.html">Free vs paid</a></li></ul></div><div class="sb-card"><div class="sb-card-title">Fix errors</div><ul class="sb-links"><li><a href="/troubleshooting.html" class="cur">Troubleshooting</a></li><li><a href="/iriun-webcam-not-connecting.html">Not connecting</a></li><li><a href="/iriun-webcam-not-working.html">Not working</a></li><li><a href="/iriun-webcam-black-screen.html">Black screen</a></li><li><a href="/iriun-webcam-audio.html">Audio / microphone</a></li><li><a href="/iriun-webcam-windows-11.html">Windows 11</a></li></ul></div><div class="sb-card"><div class="sb-card-title">Apps & devices</div><ul class="sb-links"><li><a href="/video-calls-setup.html">Zoom / Teams / Meet</a></li><li><a href="/obs-setup.html">OBS Studio</a></li><li><a href="/iriun-webcam-discord.html">Discord</a></li><li><a href="/iriun-webcam-zoom.html">Zoom guide</a></li><li><a href="/iriun-webcam-teams.html">Teams guide</a></li><li><a href="/iriun-webcam-iphone.html">iPhone guide</a></li><li><a href="/iriun-webcam-android.html">Android guide</a></li><li><a href="/iriun-webcam-review.html">Review</a></li><li><a href="/faq.html">FAQ</a></li></ul></div></aside>
+</div></div>
+<footer class="site-footer"><div class="wrap"><div class="footer-inner"><div><div class="footer-logo"><div class="footer-logo-mark">Ir</div><span class="footer-logo-name">Iriun Webcam for Windows</span></div><p class="footer-tagline">Unofficial Windows guide &mdash; not affiliated with Iriun.</p></div><div><div class="footer-col-title">Setup</div><ul class="footer-links"><li><a href="/index.html">Download</a></li><li><a href="/download-install.html">Install guide</a></li><li><a href="/usb-vs-wifi.html">USB vs Wi-Fi</a></li><li><a href="/uninstall-reinstall.html">Reinstall</a></li><li><a href="/iriun-webcam-free-vs-paid.html">Free vs paid</a></li></ul></div><div><div class="footer-col-title">Fix errors</div><ul class="footer-links"><li><a href="/troubleshooting.html">Troubleshooting</a></li><li><a href="/iriun-webcam-not-connecting.html">Not connecting</a></li><li><a href="/iriun-webcam-not-working.html">Not working</a></li><li><a href="/iriun-webcam-black-screen.html">Black screen</a></li><li><a href="/iriun-webcam-audio.html">Audio / microphone</a></li></ul></div><div><div class="footer-col-title">Apps &amp; devices</div><ul class="footer-links"><li><a href="/video-calls-setup.html">Zoom / Teams / Meet</a></li><li><a href="/obs-setup.html">OBS Studio</a></li><li><a href="/iriun-webcam-discord.html">Discord</a></li><li><a href="/iriun-webcam-iphone.html">iPhone guide</a></li><li><a href="/iriun-webcam-android.html">Android guide</a></li></ul></div></div><div class="footer-bottom"><p>Not affiliated with or endorsed by Iriun. Unofficial community guide.</p></div></div></footer><div class="cookie-bar" id="cookieBar" style="display:none"><p>We use Google Analytics for anonymous traffic data. <a href="/faq.html">Privacy</a></p><div class="cookie-btns"><button class="cookie-accept" id="cookieAccept">Accept</button><button class="cookie-decline" id="cookieDecline">Decline</button></div></div><script async src="https://www.googletagmanager.com/gtag/js?id=G-KTRNMRWX0D"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("consent","default",{analytics_storage:"denied",ad_storage:"denied"});gtag("js",new Date());gtag("config","G-KTRNMRWX0D",{anonymize_ip:true,send_page_view:false});function grantGA(){gtag("consent","update",{analytics_storage:"granted"});gtag("event","page_view",{page_location:location.href,page_title:document.title})}document.addEventListener("DOMContentLoaded",function(){var bar=document.getElementById("cookieBar");var c=localStorage.getItem("ir_consent");if(!c){bar.style.display="flex"}else if(c==="1"){grantGA()}document.getElementById("cookieAccept").addEventListener("click",function(){localStorage.setItem("ir_consent","1");grantGA();bar.style.display="none"});document.getElementById("cookieDecline").addEventListener("click",function(){localStorage.setItem("ir_consent","0");bar.style.display="none"});});</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Iriun phone not connecting to PC","acceptedAnswer":{"@type":"Answer","text":"Make sure the PC client is running first and both devices are on the same Wi-Fi network."}},{"@type":"Question","name":"Iriun not showing in Zoom camera list","acceptedAnswer":{"@type":"Answer","text":"Restart Zoom after the Iriun PC client is running. Reboot Windows if the virtual camera driver is not appearing."}}]}</script>
+<script>var el=document.getElementById("nl-fix");if(el)el.classList.add("active");</script>
+</body></html>

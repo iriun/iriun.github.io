@@ -1,22 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Iriun Webcam">
-  <title>Iriun Webcam</title>
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#FF6A00"/>
-      <stop offset="100%" stop-color="#D95700"/>
-    </linearGradient>
-  </defs>
-  <!-- Background -->
-  <rect x="0" y="0" width="512" height="512" fill="url(#g)" rx="128" ry="128"/>
-  <!-- Camera body -->
-  <rect x="120" y="176" width="272" height="168" rx="28" ry="28" fill="#FFFFFF"/>
-  <!-- Top prism/viewfinder -->
-  <rect x="172" y="144" width="72" height="40" rx="12" ry="12" fill="#FFFFFF"/>
-  <!-- Lens outer ring -->
-  <circle cx="256" cy="260" r="62" fill="none" stroke="#FF6A00" stroke-width="18"/>
-  <!-- Lens inner -->
-  <circle cx="256" cy="260" r="28" fill="#D95700"/>
-  <!-- Small status LED -->
-  <circle cx="352" cy="208" r="10" fill="#FF6A00"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="7" fill="#0f172a"/>
+  <circle cx="16" cy="13" r="5" fill="none" stroke="#6366f1" stroke-width="2"/>
+  <circle cx="16" cy="13" r="2" fill="#6366f1"/>
+  <rect x="13" y="20" width="6" height="1.5" rx="0.75" fill="#6366f1"/>
+  <rect x="15" y="21.5" width="2" height="3" rx="0.5" fill="#6366f1"/>
 </svg>

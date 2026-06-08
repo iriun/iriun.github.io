@@ -1,403 +1,57 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Iriun Webcam + OBS Studio: Low-Latency Setup for Streaming</title>
-  <meta name="description" content="Configure Iriun Webcam as a video source in OBS Studio on Windows 11/10. Low-latency USB setup, 720p/1080p profiles, FPS, sync fix, and the official Windows installer.">
-  <link rel="canonical" href="https://iriun.github.io/obs-setup.html">
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Iriun Webcam in OBS Studio on Windows — Setup and Fix Guide</title>
+<meta name="description" content="Add Iriun Webcam as a video source in OBS Studio on Windows. Step-by-step setup, recommended settings for USB and Wi-Fi, and fix common OBS issues.">
+<link rel="canonical" href="https://iriun.github.io/obs-setup.html">
+<meta name="last-modified" content="2026-06-08">
+<meta property="og:title" content="Iriun Webcam in OBS Studio on Windows — Setup and Fix Guide">
+<meta property="og:description" content="Add Iriun Webcam as a video source in OBS Studio on Windows. Step-by-step setup, recommended settings for USB and Wi-Fi, and fix common OBS issues.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://iriun.github.io/obs-setup.html">
+<meta property="og:image" content="https://iriun.github.io/og-image.svg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg">
+<link rel="stylesheet" href="/style.css">
+</head><body>
+<nav class="site-nav"><div class="wrap"><div class="nav-inner"><a href="/index.html" class="nav-logo"><div class="nav-logo-mark">Ir</div><span class="nav-logo-name">Iriun Webcam</span><span class="nav-logo-sub">for Windows</span></a><div class="nav-links"><a href="/index.html" id="nl-home">Download</a><a href="/download-install.html" id="nl-install">Install</a><a href="/usb-vs-wifi.html" id="nl-usb">USB vs Wi-Fi</a><a href="/troubleshooting.html" id="nl-fix">Fix errors</a><a href="/faq.html" id="nl-faq">FAQ</a></div><a href="/index.html" class="nav-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</a></div></div></nav>
+<div class="page-hero"><div class="wrap">
+<nav class="breadcrumb"><a href="/index.html">home</a> <span>/</span> <span>obs-setup</span></nav>
+<span class="page-tag">OBS guide</span>
+<h1>Iriun Webcam in OBS Studio on Windows &mdash; <span>setup &amp; fix guide</span></h1>
+<p class="page-lead">Add Iriun Webcam as a Video Capture Device in OBS Studio on Windows. USB vs Wi-Fi settings, resolution and FPS recommendations, and fix camera not showing in OBS.</p>
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Iriun Webcam + OBS Studio: Low-Latency Setup for Streaming">
-  <meta property="og:description" content="Add Iriun Webcam as a source in OBS on Windows. Best quality with USB, stable Wi‑Fi tips, and quick troubleshooting.">
-  <meta property="og:type" content="article">
-  <meta property="og:url" content="https://iriun.github.io/obs-setup.html">
-  <meta property="og:image" content="/og-image.png">
-  <meta name="twitter:card" content="summary_large_image">
-
-  <meta name="theme-color" content="#FF6A00">
-  <meta name="robots" content="index,follow">
-
-  <!-- Single embedded stylesheet (no frameworks) -->
-  <style>
-    :root{
-      --brand:#FF6A00; /* primary brand orange */
-      --brand-dark:#D95700;
-      --bg:#F6F7F9;
-      --surface:#FFFFFF;
-      --muted:#6B7280;
-      --text:#0F1724;
-      --focus: #0EA5E9;
-      --max-width:1100px;
-      --radius:10px;
-      --shadow: 0 6px 18px rgba(16,24,40,0.08);
-      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-      color-scheme: light;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.45}
-    a{color:var(--brand);text-decoration:none}
-    a:focus{outline:3px dashed var(--focus);outline-offset:3px}
-    .container{max-width:var(--max-width);margin:0 auto;padding:24px}
-
-    header{background:linear-gradient(90deg,var(--surface),#fff);position:sticky;top:0;z-index:40;border-bottom:1px solid #E8EAEE}
-    .nav{display:flex;align-items:center;gap:16px;padding:14px 24px}
-    .logo{display:flex;align-items:center;gap:12px}
-    .logo svg{width:38px;height:38px}
-    nav ul{display:flex;gap:12px;list-style:none;margin:0;padding:0}
-    nav a{padding:8px 10px;border-radius:8px}
-    nav a:hover{background:rgba(255,106,0,0.08)}
-
-    .hero{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:start;padding:34px 0}
-    h1{font-size:26px;margin:0 0 10px}
-    p.lead{margin:0 0 16px;color:#374151}
-
-    .card{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px}
-    .cta{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;border:0;background:var(--brand);color:#fff;font-weight:600;cursor:pointer}
-    .btn.secondary{background:transparent;color:var(--brand);border:1px solid rgba(16,24,40,0.06)}
-    .btn:focus{outline:3px dashed var(--focus);outline-offset:3px}
-
-    .grid{display:grid;grid-template-columns:2fr 1fr;gap:16px}
-    .muted{color:var(--muted);font-size:14px}
-    .step{background:linear-gradient(180deg,#fff,#FBFBFD);padding:14px;border-radius:10px;border:1px solid #EFF2F5;margin-bottom:10px}
-    .callout{border-left:4px solid var(--brand); background:#FFF7F2; padding:12px; border-radius:8px}
-
-    footer{margin-top:36px;padding:24px 0;border-top:1px solid #E8EAEE;color:var(--muted)}
-    .footer-grid{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
-
-    /* cookie banner */
-    .cookie{position:fixed;left:16px;right:16px;bottom:16px;background:var(--surface);border-radius:12px;padding:16px;box-shadow:0 10px 30px rgba(2,6,23,0.12);display:flex;gap:12px;align-items:center;z-index:60}
-    .cookie p{margin:0;color:#111827}
-    .cookie .actions{margin-left:auto;display:flex;gap:8px}
-
-    @media (max-width:1000px){.grid{grid-template-columns:1fr}}
-    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-  </style>
-
-  <!-- Inline SVG sprite -->
-  <svg style="display:none" aria-hidden="true">
-    <symbol id="icon-camera" viewBox="0 0 24 24">
-      <path fill="currentColor" d="M12 8a4 4 0 100 8 4 4 0 000-8zm8-2h-2.2l-1.6-2H7.8L6.2 6H4a2 2 0 00-2 2v8a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2z"/>
-    </symbol>
-    <symbol id="icon-download" viewBox="0 0 24 24">
-      <path fill="currentColor" d="M12 3v10m0 0l4-4m-4 4l-4-4M4 21h16" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-    </symbol>
-    <symbol id="icon-help" viewBox="0 0 24 24"><path fill="currentColor" d="M12 18h.01M9.09 9a3 3 0 115.82 1c0 2-3 2.5-3 2.5" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
-    <symbol id="icon-check" viewBox="0 0 24 24"><path fill="currentColor" d="M5 13l4 4L19 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
-  </svg>
-
-  <!-- Minimal gtag wrapper: queue events before consent -->
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);} // config only after consent
-  </script>
-
-  <!-- JSON-LD: SoftwareApplication, WebPage, Breadcrumbs, HowTo (OBS), FAQ -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "@id": "https://iriun.github.io/#website",
-        "url": "https://iriun.github.io/",
-        "name": "Iriun Webcam for Windows — Independent Resource",
-        "publisher": {"@type":"Organization","name":"Iriun (Independent resource)"}
-      },
-      {
-        "@type": "WebPage",
-        "@id": "https://iriun.github.io/obs-setup.html#webpage",
-        "url": "https://iriun.github.io/obs-setup.html",
-        "name": "Iriun Webcam + OBS Studio: Low-Latency Setup for Streaming",
-        "isPartOf": {"@id":"https://iriun.github.io/#website"},
-        "datePublished": "2024-01-01",
-        "dateModified": "2026-05-02",
-        "breadcrumb": {"@id":"https://iriun.github.io/obs-setup.html#breadcrumblist"}
-      },
-      {
-        "@type":"BreadcrumbList",
-        "@id":"https://iriun.github.io/obs-setup.html#breadcrumblist",
-        "itemListElement":[
-          {"@type":"ListItem","position":1,"name":"Home","item":"https://iriun.github.io/"},
-          {"@type":"ListItem","position":2,"name":"OBS setup","item":"https://iriun.github.io/obs-setup.html"}
-        ]
-      },
-      {
-        "@type":"SoftwareApplication",
-        "@id":"https://iriun.github.io/#software",
-        "name":"Iriun Webcam",
-        "operatingSystem":"Windows 11, Windows 10 (64-bit)",
-        "applicationCategory":"MultimediaApplication",
-        "softwareVersion":"2.9.5",
-        "url":"https://iriun.github.io/obs-setup.html",
-        "downloadUrl":"https://iriun.com/IriunWebcam-2.9.5.exe",
-        "offers": {"@type":"Offer","price":"0.00","priceCurrency":"USD"}
-      },
-      {
-        "@type":"HowTo",
-        "name":"Add Iriun Webcam to OBS Studio",
-        "totalTime":"PT2M",
-        "step": [
-          {"@type":"HowToStep","name":"Open OBS and add a source","text":"In OBS, go to Sources → + → Video Capture Device."},
-          {"@type":"HowToStep","name":"Choose Iriun Webcam","text":"Select \"Iriun Webcam\" as the device and click OK."},
-          {"@type":"HowToStep","name":"Set resolution & FPS","text":"Set 1280×720 @30fps (or 1920×1080 if stable). Disable buffering for lower latency."},
-          {"@type":"HowToStep","name":"Position in scene","text":"Resize and crop the source as needed. Add a filter or color correction if desired."}
-        ]
-      },
-      {
-        "@type":"FAQPage",
-        "mainEntity":[
-          {"@type":"Question","name":"How do I reduce capture lag in OBS?","acceptedAnswer":{"@type":"Answer","text":"Use a USB cable with Iriun for the lowest latency. In the Video Capture Device properties, disable buffering and set a stable frame rate (30fps)."}},
-          {"@type":"Question","name":"My audio and video are out of sync, how to fix?","acceptedAnswer":{"@type":"Answer","text":"Use a dedicated microphone as your audio source and add a sync offset in OBS if needed (Advanced Audio Properties)."}},
-          {"@type":"Question","name":"Which resolution should I use?","acceptedAnswer":{"@type":"Answer","text":"Start with 1280×720 @30fps for stability. If your connection is solid (USB or strong 5GHz Wi‑Fi), try 1920×1080."}}
-        ]
-      }
-    ]
-  }
-  </script>
-
-</head>
-<body>
-  <a class="sr-only" href="#main">Skip to main content</a>
-  <header>
-    <div class="container nav">
-      <div class="logo">
-        <a href="index.html" aria-label="Home" style="display:flex;align-items:center;gap:12px">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-camera"/></svg>
-          <div>
-            <strong style="display:block">Iriun Webcam</strong>
-            <small class="muted">Use your phone as a webcam — Independent resource</small>
-          </div>
-        </a>
-      </div>
-      <nav style="margin-left:auto">
-        <ul>
-          <li><a href="download-install.html">Download</a></li>
-          <li><a href="video-calls-setup.html">Video calls</a></li>
-          <li><a aria-current="page" href="obs-setup.html">OBS</a></li>
-          <li><a href="usb-vs-wifi.html">USB vs Wi‑Fi</a></li>
-          <li><a href="troubleshooting.html">Troubleshooting</a></li>
-          <li><a href="faq.html">FAQ</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main id="main" class="container">
-    <section class="hero">
-      <div>
-        <h1>Iriun Webcam + OBS Studio: Low‑Latency Setup for Streaming</h1>
-        <p class="lead">Add your phone camera to OBS Studio in minutes. For the lowest latency and the most stable image, use a USB cable. On Wi‑Fi, prefer 5GHz near the router.</p>
-
-        <div class="card">
-          <div class="cta">
-            <button class="btn" id="downloadBtn" data-filename="IriunWebcam-2.9.5.exe" onclick="downloadInstaller(event)">
-              <svg width="18" height="18" aria-hidden><use href="#icon-download"/></svg>
-              Download for Windows
-            </button>
-            <a class="btn secondary" href="download-install.html">Install guide</a>
-            <a class="btn secondary" href="usb-vs-wifi.html">USB vs Wi‑Fi tips</a>
-          </div>
-          <div style="margin-top:14px;font-size:14px;color:var(--muted)">
-            <strong>Version:</strong> 2.9.5 • <strong>OS:</strong> Windows 11 / 10 • <strong>File:</strong> <code>IriunWebcam-2.9.5.exe</code>
-          </div>
-        </div>
-
-        <div style="margin-top:16px" class="callout">
-          <strong>Tip:</strong> Open the Iriun app on your phone first, then launch the Iriun Windows app before starting OBS.
-        </div>
-      </div>
-
-      <aside>
-        <div class="card">
-          <h3 style="margin:0 0 8px">Requirements</h3>
-          <ul class="muted" style="margin:0;padding-left:18px">
-            <li>Windows 11/10 (64‑bit), OBS Studio installed</li>
-            <li>Iriun installed on Windows and your phone</li>
-            <li>USB cable for the best latency, or same 5GHz Wi‑Fi</li>
-            <li>Good lighting and phone power connected</li>
-          </ul>
-          <div style="margin-top:12px">
-            <small class="muted">Last updated:</small>
-            <div id="lastModified" style="font-weight:600;margin-top:4px">—</div>
-          </div>
-        </div>
-      </aside>
-    </section>
-
-    <section class="grid">
-      <div>
-        <div class="card">
-          <h2 style="margin-top:0">Add Iriun to OBS (step‑by‑step)</h2>
-          <div class="step"><strong>1) Start Iriun</strong> — Open Iriun on your phone, then on your PC. Confirm the phone and PC are connected (USB or same Wi‑Fi).</div>
-          <div class="step"><strong>2) Create a source</strong> — In OBS, go to Sources → + → Video Capture Device → Create new.</div>
-          <div class="step"><strong>3) Pick the device</strong> — Select <em>Iriun Webcam</em> in the Device list and click OK.</div>
-          <div class="step"><strong>4) Set resolution & FPS</strong> — 1280×720 @30fps is a stable baseline. Try 1920×1080 if your connection is solid.</div>
-          <div class="step"><strong>5) Reduce latency</strong> — In the source properties, disable buffering. Keep FPS at 30 for consistency.</div>
-          <div class="step"><strong>6) Position & crop</strong> — Resize the source, hold Alt while dragging edges to crop, add filters if needed.</div>
-        </div>
-
-        <div style="height:14px"></div>
-
-        <div class="card">
-          <h2 style="margin-top:0">Recommended OBS settings</h2>
-          <ul class="muted" style="margin:0;padding-left:18px">
-            <li><strong>Base/Output (Canvas) resolution:</strong> 1920×1080 or 1280×720 depending on your scene.</li>
-            <li><strong>FPS:</strong> 30fps recommended for stable phone capture; 60fps only if your setup handles it.</li>
-            <li><strong>Video Capture Device properties:</strong> Resolution/FPS Type → Custom; set resolution & FPS; disable buffering.</li>
-            <li><strong>Audio sync:</strong> Use a dedicated mic as your audio source; add Sync Offset in Advanced Audio Properties if needed.</li>
-            <li><strong>Performance:</strong> Close heavy apps, keep the phone plugged in, disable battery savers, lock phone focus/exposure.</li>
-          </ul>
-          <div class="muted" style="margin-top:10px">Need connection tips? See <a href="usb-vs-wifi.html">USB vs Wi‑Fi</a>. Seeing black screen or no device? Go to <a href="troubleshooting.html">Troubleshooting</a>.</div>
-        </div>
-
-        <div style="height:14px"></div>
-
-        <div class="card">
-          <h2 style="margin-top:0">Common issues in OBS</h2>
-          <ul class="muted" style="margin:0;padding-left:18px">
-            <li><strong>No video device:</strong> Start Iriun on phone and PC first, then reopen OBS. Reinstall if the driver is missing.</li>
-            <li><strong>Black screen on Wi‑Fi:</strong> Move closer to the router or switch to USB. Prefer 5GHz bands.</li>
-            <li><strong>Stutters or drops:</strong> Lower resolution to 720p @30fps and disable buffering.</li>
-            <li><strong>Audio out of sync:</strong> Use a separate microphone and adjust sync offset in OBS.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div>
-        <div class="card">
-          <h3 style="margin-top:0">Quick download</h3>
-          <p class="muted" style="margin:0">Official Windows installer:</p>
-          <p style="margin:6px 0 10px"><code>IriunWebcam-2.9.5.exe</code></p>
-          <button class="btn" data-filename="IriunWebcam-2.9.5.exe" onclick="downloadInstaller(event)">
-            <svg width="18" height="18" aria-hidden><use href="#icon-download"/></svg>
-            Download now
-          </button>
-        </div>
-
-        <div style="height:14px"></div>
-
-        <div class="card">
-          <h3 style="margin-top:0">More guides</h3>
-          <ul class="muted" style="margin:0;padding-left:18px">
-            <li><a href="download-install.html">Download & Install</a></li>
-            <li><a href="video-calls-setup.html">Zoom / Teams / Meet</a></li>
-            <li><a href="usb-vs-wifi.html">USB vs Wi‑Fi</a></li>
-            <li><a href="troubleshooting.html">Troubleshooting</a></li>
-            <li><a href="faq.html">FAQ</a></li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <div class="container footer-grid">
-        <div>
-          <small>&copy; 2026 Iriun Webcam — Independent resource • <a href="privacy.html">Privacy</a></small>
-          <div style="margin-top:6px;color:var(--muted)">Not affiliated with or endorsed by Iriun.</div>
-        </div>
-        <div style="text-align:right;color:var(--muted)">
-          <small>Installer file: <code> IriunWebcam-2.9.5.exe</code></small>
-          <br>
-          <small id="fileUrl">https://iriun.com/IriunWebcam-2.9.5.exe</small>
-        </div>
-      </div>
-    </footer>
-
-  </main>
-
-  <!-- Cookie banner -->
-  <div id="cookieBanner" class="cookie" role="dialog" aria-live="polite">
-    <div>
-      <strong>We use cookies</strong>
-      <p class="muted">We use analytics to improve the site. You can Accept or Decline. No analytics are loaded until you accept.</p>
-    </div>
-    <div class="actions">
-      <button class="btn" id="acceptCookies">Accept</button>
-      <button class="btn secondary" id="declineCookies">Decline</button>
-      <button class="btn secondary" id="closeCookie">Close</button>
-    </div>
-  </div>
-
-  <!-- Scripts: cookie handling, download tracking, GA loader -->
-  <script>
-    (function(){
-      const GA_ID = 'G-KTRNMRWX0D';
-      const installerUrl = 'https://iriun.com/IriunWebcam-2.9.5.exe';
-      const installerName = 'IriunWebcam-2.9.5.exe';
-
-      // Last modified display
-      const lastEl = document.getElementById('lastModified');
-      const lm = document.lastModified || '';
-      if(lastEl) lastEl.textContent = lm ? lm : '2026-05-02';
-
-      // Cookie banner logic
-      const cookieBanner = document.getElementById('cookieBanner');
-      const acceptBtn = document.getElementById('acceptCookies');
-      const declineBtn = document.getElementById('declineCookies');
-      const closeBtn = document.getElementById('closeCookie');
-
-      function showBannerIfNeeded(){
-        const choice = localStorage.getItem('iriun_analytics');
-        if(choice === null){ cookieBanner.style.display = 'flex'; }
-        else{ cookieBanner.style.display = 'none'; if(choice === 'granted') loadGAScript(); }
-      }
-
-      function loadGAScript(){
-        if(window.__ga_loaded) return;
-        window.__ga_loaded = true;
-        const s = document.createElement('script');
-        s.async = true;
-        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
-        document.head.appendChild(s);
-        s.onload = function(){
-          gtag('js', new Date());
-          gtag('config', GA_ID, { 'anonymize_ip': true });
-        };
-      }
-
-      acceptBtn.addEventListener('click', function(){
-        localStorage.setItem('iriun_analytics','granted');
-        cookieBanner.style.display = 'none';
-        loadGAScript();
-      });
-      declineBtn.addEventListener('click', function(){
-        localStorage.setItem('iriun_analytics','denied');
-        cookieBanner.style.display = 'none';
-      });
-      closeBtn.addEventListener('click', function(){
-        cookieBanner.style.display = 'none';
-      });
-
-      // Download button handler with gtag event
-      window.downloadInstaller = function(e){
-        e && e.preventDefault && e.preventDefault();
-        try{
-          gtag('event','file_download', {
-            'event_category':'downloads',
-            'event_label': installerName,
-            'file_url': installerUrl
-          });
-        }catch(err){}
-        setTimeout(function(){ window.location.href = installerUrl; }, 200);
-      };
-
-      // Delegated handler for elements with data-filename
-      document.addEventListener('click', function(ev){
-        const t = ev.target.closest && ev.target.closest('[data-filename]');
-        if(!t) return;
-        if(t.id !== 'downloadBtn'){
-          const name = t.getAttribute('data-filename') || installerName;
-          try{ gtag('event','file_download',{event_category:'downloads',event_label:name,file_url:installerUrl}); }catch(e){}
-        }
-      });
-
-      // init
-      showBannerIfNeeded();
-
-    })();
-  </script>
-</body>
-</html>
+</div></div>
+<div class="wrap"><div class="content-layout">
+<main><div class="callout callout-info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span>Iriun Webcam appears as a standard virtual camera device in OBS. Add it as a Video Capture Device source &mdash; same as any physical webcam.</span></div>
+<div class="section"><span class="section-label">Setup</span><h2>Add Iriun Webcam to OBS Studio</h2><ul class="steps">
+<li class="step"><div class="step-n">1</div><div><h3>Start Iriun PC client and connect phone</h3><p>Open <strong>Iriun Webcam</strong> on Windows first. Connect your phone via USB or Wi-Fi. Confirm the phone is streaming before opening OBS.</p></div></li>
+<li class="step"><div class="step-n">2</div><div><h3>Add Video Capture Device in OBS</h3><p>In OBS: click <strong>+</strong> in the Sources panel &rarr; <strong>Video Capture Device</strong> &rarr; give it a name (e.g. "Iriun Phone") &rarr; click OK.</p></div></li>
+<li class="step"><div class="step-n">3</div><div><h3>Select Iriun Webcam</h3><p>In the Device dropdown, select <strong>Iriun Webcam</strong>. The preview should show your phone camera feed. Click OK.</p></div></li>
+<li class="step"><div class="step-n">4</div><div><h3>Set resolution and FPS</h3><p>In the Video Capture Device properties: set Resolution to your target (720p or 1080p) and FPS to 30. Higher FPS requires USB connection for stable performance.</p></div></li>
+</ul></div>
+<div class="section"><span class="section-label">Recommended settings</span><h2>OBS settings for Iriun Webcam</h2>
+<div class="tbl-wrap"><table><thead><tr><th>Setting</th><th>USB</th><th>Wi-Fi</th></tr></thead><tbody>
+<tr><td><strong>Resolution</strong></td><td>1080p (paid) / 720p (free)</td><td>720p recommended</td></tr>
+<tr><td><strong>FPS</strong></td><td>30 fps stable</td><td>24&ndash;30 fps</td></tr>
+<tr><td><strong>Latency</strong></td><td class="td-ok">1&ndash;5ms</td><td>10&ndash;50ms</td></tr>
+<tr><td><strong>Stability</strong></td><td class="td-ok">Excellent</td><td>Depends on Wi-Fi</td></tr>
+</tbody></table></div>
+<div class="callout callout-ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>For streaming and recording in OBS, USB mode is strongly recommended. It gives the lowest latency, no wireless dropouts and charges your phone at the same time.</span></div>
+</div>
+<div class="section"><span class="section-label">Common OBS issues</span><h2>Fix Iriun issues in OBS</h2>
+<div class="err-card"><div class="err-title">Iriun Webcam not showing in OBS device list</div><div class="err-cause">OBS was opened before Iriun client connected</div><span class="err-fix">Close OBS, start Iriun + connect phone, then reopen OBS</span></div>
+<div class="err-card"><div class="err-title">Video appears stretched or wrong aspect ratio</div><div class="err-cause">OBS resolution does not match Iriun output resolution</div><span class="err-fix">In Video Capture Device properties: set Custom Resolution to match</span></div>
+<div class="err-card"><div class="err-title">Audio not synced with video in OBS</div><div class="err-cause">Audio and video on different latency paths</div><span class="err-fix">Add Audio Capture Device source for Iriun Webcam separately</span></div>
+</div>
+<div class="section"><span class="section-label">FAQ</span><h2>OBS questions</h2><div class="faq">
+<div class="faq-item"><details><summary>Iriun microphone audio in OBS</summary><div class="faq-ans">Iriun can stream phone microphone audio to Windows. In OBS, add an <strong>Audio Input Capture</strong> source and select <strong>Iriun Webcam</strong> (or the Iriun audio device). This gives you phone microphone audio as a separate audio track in OBS. See <a href="/iriun-webcam-audio.html">audio guide</a>.</div></details></div>
+<div class="faq-item"><details><summary>Can I use Iriun as a phone camera in OBS for streaming?</summary><div class="faq-ans">Yes &mdash; this is a popular use case. Many streamers use a phone as a high-quality webcam via Iriun because phone cameras often have better sensors than dedicated webcams. USB mode ensures consistent quality during long streams.</div></details></div>
+</div></div>
+<div class="cta-banner"><div><h2>Need help connecting first?</h2><p>Full connection setup guide.</p></div><a href="/iriun-webcam-not-connecting.html" class="btn-white"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Connect guide</a></div>
+<div style="margin-bottom:24px"><span class="section-label">Related guides</span><div class="rel-grid"><a href="/usb-vs-wifi.html" class="rel-card"><div class="rel-title">USB vs Wi-Fi &rarr;</div><div class="rel-sub">best for OBS</div></a><a href="/iriun-webcam-audio.html" class="rel-card"><div class="rel-title">Audio guide &rarr;</div><div class="rel-sub">microphone in OBS</div></a><a href="/troubleshooting.html" class="rel-card"><div class="rel-title">Troubleshooting &rarr;</div><div class="rel-sub">fix errors</div></a></div></div></main>
+<aside class="content-sidebar"><div class="sb-ver"><div class="sb-ver-label">PC client</div><div class="sb-ver-val">2.9.5</div><div class="sb-ver-sub">Windows 10 / 11</div></div><div class="sb-card"><div class="sb-card-title">Setup</div><ul class="sb-links"><li><a href="/index.html">Download Iriun Webcam</a></li><li><a href="/download-install.html">Install guide</a></li><li><a href="/usb-vs-wifi.html">USB vs Wi-Fi</a></li><li><a href="/uninstall-reinstall.html">Reinstall</a></li><li><a href="/iriun-webcam-free-vs-paid.html">Free vs paid</a></li></ul></div><div class="sb-card"><div class="sb-card-title">Fix errors</div><ul class="sb-links"><li><a href="/troubleshooting.html">Troubleshooting</a></li><li><a href="/iriun-webcam-not-connecting.html">Not connecting</a></li><li><a href="/iriun-webcam-not-working.html">Not working</a></li><li><a href="/iriun-webcam-black-screen.html">Black screen</a></li><li><a href="/iriun-webcam-audio.html">Audio / microphone</a></li><li><a href="/iriun-webcam-windows-11.html">Windows 11</a></li></ul></div><div class="sb-card"><div class="sb-card-title">Apps & devices</div><ul class="sb-links"><li><a href="/video-calls-setup.html">Zoom / Teams / Meet</a></li><li><a href="/obs-setup.html" class="cur">OBS Studio</a></li><li><a href="/iriun-webcam-discord.html">Discord</a></li><li><a href="/iriun-webcam-zoom.html">Zoom guide</a></li><li><a href="/iriun-webcam-teams.html">Teams guide</a></li><li><a href="/iriun-webcam-iphone.html">iPhone guide</a></li><li><a href="/iriun-webcam-android.html">Android guide</a></li><li><a href="/iriun-webcam-review.html">Review</a></li><li><a href="/faq.html">FAQ</a></li></ul></div></aside>
+</div></div>
+<footer class="site-footer"><div class="wrap"><div class="footer-inner"><div><div class="footer-logo"><div class="footer-logo-mark">Ir</div><span class="footer-logo-name">Iriun Webcam for Windows</span></div><p class="footer-tagline">Unofficial Windows guide &mdash; not affiliated with Iriun.</p></div><div><div class="footer-col-title">Setup</div><ul class="footer-links"><li><a href="/index.html">Download</a></li><li><a href="/download-install.html">Install guide</a></li><li><a href="/usb-vs-wifi.html">USB vs Wi-Fi</a></li><li><a href="/uninstall-reinstall.html">Reinstall</a></li><li><a href="/iriun-webcam-free-vs-paid.html">Free vs paid</a></li></ul></div><div><div class="footer-col-title">Fix errors</div><ul class="footer-links"><li><a href="/troubleshooting.html">Troubleshooting</a></li><li><a href="/iriun-webcam-not-connecting.html">Not connecting</a></li><li><a href="/iriun-webcam-not-working.html">Not working</a></li><li><a href="/iriun-webcam-black-screen.html">Black screen</a></li><li><a href="/iriun-webcam-audio.html">Audio / microphone</a></li></ul></div><div><div class="footer-col-title">Apps &amp; devices</div><ul class="footer-links"><li><a href="/video-calls-setup.html">Zoom / Teams / Meet</a></li><li><a href="/obs-setup.html">OBS Studio</a></li><li><a href="/iriun-webcam-discord.html">Discord</a></li><li><a href="/iriun-webcam-iphone.html">iPhone guide</a></li><li><a href="/iriun-webcam-android.html">Android guide</a></li></ul></div></div><div class="footer-bottom"><p>Not affiliated with or endorsed by Iriun. Unofficial community guide.</p></div></div></footer><div class="cookie-bar" id="cookieBar" style="display:none"><p>We use Google Analytics for anonymous traffic data. <a href="/faq.html">Privacy</a></p><div class="cookie-btns"><button class="cookie-accept" id="cookieAccept">Accept</button><button class="cookie-decline" id="cookieDecline">Decline</button></div></div><script async src="https://www.googletagmanager.com/gtag/js?id=G-KTRNMRWX0D"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("consent","default",{analytics_storage:"denied",ad_storage:"denied"});gtag("js",new Date());gtag("config","G-KTRNMRWX0D",{anonymize_ip:true,send_page_view:false});function grantGA(){gtag("consent","update",{analytics_storage:"granted"});gtag("event","page_view",{page_location:location.href,page_title:document.title})}document.addEventListener("DOMContentLoaded",function(){var bar=document.getElementById("cookieBar");var c=localStorage.getItem("ir_consent");if(!c){bar.style.display="flex"}else if(c==="1"){grantGA()}document.getElementById("cookieAccept").addEventListener("click",function(){localStorage.setItem("ir_consent","1");grantGA();bar.style.display="none"});document.getElementById("cookieDecline").addEventListener("click",function(){localStorage.setItem("ir_consent","0");bar.style.display="none"});});</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"Add Iriun Webcam to OBS Studio","step":[{"@type":"HowToStep","position":1,"name":"Start Iriun","text":"Open Iriun PC client and connect phone"},{"@type":"HowToStep","position":2,"name":"Add source","text":"OBS Sources > + > Video Capture Device"},{"@type":"HowToStep","position":3,"name":"Select device","text":"Choose Iriun Webcam from Device dropdown"},{"@type":"HowToStep","position":4,"name":"Set resolution","text":"Set resolution to 720p or 1080p and FPS to 30"}]}</script>
+<script>var el=document.getElementById("nl-fix");if(el)el.classList.add("active");</script>
+</body></html>
